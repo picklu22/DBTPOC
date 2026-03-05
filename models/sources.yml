@@ -1,0 +1,8 @@
+
+version: 2
+sources:
+  - name: raw
+    database: DBT_POC      # e.g., ANALYTICS_DB
+    schema: DBT_SCHEMA          # e.g., RAW
+    tables:
+      - name: customers
