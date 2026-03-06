@@ -2,6 +2,12 @@ name: Read Csv
 
 on:
   push: 
+    paths:
+      - 'models/**'
+      - 'macros/**'
+      - 'seeds/**'
+      - 'snapshots/**'
+      - 'dbt_project.yml'
   workflow_dispatch:
 
 jobs:
