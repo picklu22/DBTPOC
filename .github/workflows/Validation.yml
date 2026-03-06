@@ -39,7 +39,7 @@ jobs:
             outputs:
               dev:
                 type: "snowflake"
-                account:"JZBSADH-CG45326"
+                account: "JZBSADH-CG45326"
                 user: "monopoly22"
                 password: "8638569740picklU"
                 role: "ACCOUNTADMIN"
