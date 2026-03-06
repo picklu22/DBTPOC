@@ -42,7 +42,7 @@ jobs:
                 account:"JZBSADH-CG45326"
                 user: "monopoly22"
                 password: "8638569740picklU"
-                role: ACCOUNTADMIN
+                role: "ACCOUNTADMIN"
                 database: "DBT_POC"
                 warehouse: "COMPUTE_WH"
                 schema: "DBT_SCHEMA"
