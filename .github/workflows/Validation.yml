@@ -28,18 +28,17 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install pandas
-          pip install snowflake-connector-python
-          pip install openpyxl
-          pip install dbt-snowflake
+          pip install pandas snowflake-connector-python openpyxl dbt-snowflake
 
-      - name: Run Python Script
-        run: python python.py
+      - name: Create dbt profile folder
+        run: mkdir -p ~/.dbt
 
       - name: Run dbt Models
         run: |
           dbt deps
-          dbt run
+          dbt run --profiles-dir .
+      - name: Run Python Script
+        run: python python.py
 
       - name: Commit and Push Generated Excel
         run: |
@@ -48,5 +47,6 @@ jobs:
           git add data_comp.xlsx
           git commit -m "Auto-generate Excel report from workflow" || echo "No changes to commit"
           git push
+
       - name: Trigger Email
         run: python Email.py
