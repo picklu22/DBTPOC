@@ -1,0 +1,115 @@
+sources.yml
+
+version: 2
+
+sources:
+  - name: ecommerce
+    database: MY_DB
+    schema: PUBLIC
+
+    tables:
+      - name: dim_customer
+      - name: dim_product
+      - name: dim_date
+      - name: dim_channel
+      - name: dim_geography
+      - name: fact_orders
+      - name: fact_order_items
+	  
+	  
+
+Staging Model (Clean Layer)	  
+Example: stg_orders.sql
+{{ config(materialized='view') }}
+
+SELECT
+    ORDER_ID,
+    ORDER_DATE_KEY,
+    CUSTOMER_KEY,
+    CHANNEL_KEY,
+    PROMO_KEY,
+    ORDER_STATUS,
+    PAYMENT_METHOD
+FROM {{ source('ecommerce','fact_orders') }}
+WHERE ORDER_STATUS = 'Completed'
+
+Order Revenue Transformation
+Create revenue calculation.
+models/marts/order_revenue.sql
+{{ config(materialized='table') }}
+
+SELECT
+    oi.ORDER_ID,
+    SUM(oi.QUANTITY * oi.UNIT_PRICE) AS GROSS_REVENUE,
+    SUM(oi.DISCOUNT_AMOUNT) AS TOTAL_DISCOUNT,
+    SUM((oi.QUANTITY * oi.UNIT_PRICE) - oi.DISCOUNT_AMOUNT) AS NET_REVENUE
+FROM {{ source('ecommerce','fact_order_items') }} oi
+GROUP BY oi.ORDER_ID
+
+Product Sales Mart
+This shows product level sales.
+models/marts/product_sales.sql
+
+{{ config(materialized='table') }}
+
+SELECT
+    p.PRODUCT_NAME,
+    p.BRAND,
+    SUM(oi.QUANTITY) AS TOTAL_QUANTITY,
+    SUM((oi.QUANTITY * oi.UNIT_PRICE) - oi.DISCOUNT_AMOUNT) AS TOTAL_REVENUE
+FROM {{ source('ecommerce','fact_order_items') }} oi
+JOIN {{ source('ecommerce','dim_product') }} p
+    ON oi.PRODUCT_KEY = p.PRODUCT_KEY
+GROUP BY
+    p.PRODUCT_NAME,
+    p.BRAND
+Customer Sales Model
+models/marts/customer_sales.sql
+{{ config(materialized='table') }}
+
+SELECT
+    c.CUSTOMER_NAME,
+    c.SEGMENT,
+    COUNT(DISTINCT o.ORDER_ID) AS TOTAL_ORDERS,
+    SUM((oi.QUANTITY * oi.UNIT_PRICE) - oi.DISCOUNT_AMOUNT) AS TOTAL_SPENT
+FROM {{ source('ecommerce','fact_orders') }} o
+JOIN {{ source('ecommerce','fact_order_items') }} oi
+    ON o.ORDER_ID = oi.ORDER_ID
+JOIN {{ source('ecommerce','dim_customer') }} c
+    ON o.CUSTOMER_KEY = c.CUSTOMER_KEY
+GROUP BY
+    c.CUSTOMER_NAME,
+    c.SEGMENT
+	
+Daily Revenue Model
+models/marts/daily_revenue.sql
+{{ config(materialized='table') }}
+
+SELECT
+    d.DATE_VALUE,
+    SUM((oi.QUANTITY * oi.UNIT_PRICE) - oi.DISCOUNT_AMOUNT) AS DAILY_REVENUE
+FROM {{ source('ecommerce','fact_orders') }} o
+JOIN {{ source('ecommerce','fact_order_items') }} oi
+    ON o.ORDER_ID = oi.ORDER_ID
+JOIN {{ source('ecommerce','dim_date') }} d
+    ON o.ORDER_DATE_KEY = d.DATE_KEY
+GROUP BY d.DATE_VALUE
+ORDER BY d.DATE_VALUE
+
+Conversion Rate Model
+Very good interview transformation.
+models/marts/channel_conversion.sql
+{{ config(materialized='table') }}
+
+SELECT
+    ch.CHANNEL_NAME,
+    COUNT(s.SESSION_ID) AS TOTAL_SESSIONS,
+    SUM(CASE WHEN s.IS_CONVERTED THEN 1 ELSE 0 END) AS TOTAL_CONVERSIONS,
+    ROUND(
+        SUM(CASE WHEN s.IS_CONVERTED THEN 1 ELSE 0 END) 
+        / COUNT(s.SESSION_ID) * 100,2
+    ) AS CONVERSION_RATE
+FROM {{ source('ecommerce','fact_sessions') }} s
+JOIN {{ source('ecommerce','dim_channel') }} ch
+    ON s.CHANNEL_KEY = ch.CHANNEL_KEY
+GROUP BY ch.CHANNEL_NAME
