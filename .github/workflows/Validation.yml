@@ -30,13 +30,30 @@ jobs:
         run: |
           pip install pandas snowflake-connector-python openpyxl dbt-snowflake
 
-      - name: Create dbt profile folder
-        run: mkdir -p ~/.dbt
+      - name: Create dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          cat <<EOF > ~/.dbt/profiles.yml
+          default:
+            target: dev
+            outputs:
+              dev:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                role: ${{ secrets.SNOWFLAKE_ROLE }}
+                database: ${{ secrets.SNOWFLAKE_DATABASE }}
+                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+                schema: ${{ secrets.SNOWFLAKE_SCHEMA }}
+                threads: 4
+          EOF
 
       - name: Run dbt Models
         run: |
           dbt deps
-          dbt run --profiles-dir .
+          dbt run
+
       - name: Run Python Script
         run: python python.py
 
