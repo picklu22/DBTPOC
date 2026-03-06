@@ -17,7 +17,7 @@ FILE_PATH = "data_comp.xlsx"   # Make sure this file exists
 
 msg = MIMEMultipart()
 msg["From"] = EMAIL_ADDRESS
-msg["To"] = ", ".join(TO_EMAILS)
+msg["To"] = ", ".join(TO_EMAIL)
 msg["Subject"] = "CICD generated Validation report"
 
 body = "Hello,\n\nPlease find attached the excel with validation reportreport.\n\nThanks."
