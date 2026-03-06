@@ -39,13 +39,13 @@ jobs:
             outputs:
               dev:
                 type: snowflake
-                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-                user: ${{ secrets.SNOWFLAKE_USER }}
-                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
-                role: ${{ secrets.SNOWFLAKE_ROLE }}
-                database: ${{ secrets.SNOWFLAKE_DATABASE }}
-                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-                schema: ${{ secrets.SNOWFLAKE_SCHEMA }}
+                account:"JZBSADH-CG45326"
+                user: "monopoly22"
+                password: "8638569740picklU"
+                role: ACCOUNTADMIN
+                database: "DBT_POC"
+                warehouse: "COMPUTE_WH"
+                schema: "DBT_SCHEMA"
                 threads: 4
           EOF
 
