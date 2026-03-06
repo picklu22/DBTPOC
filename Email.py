@@ -9,9 +9,8 @@ from email import encoders
 EMAIL_ADDRESS = "ghoshpicklu2@gmail.com"
 EMAIL_PASSWORD = "cjok miel xfyq lyei"
 TO_EMAIL =  [
-    "Ghosh2@cognizant.com",
-    "user2@example.com",
-    "user3@example.com"
+    "Picklu.Ghosh2@cognizant.com",
+    "Arthi.Senthil@cognizant.com"
 ]
 
 FILE_PATH = "data_comp.xlsx"   # Make sure this file exists
@@ -19,9 +18,9 @@ FILE_PATH = "data_comp.xlsx"   # Make sure this file exists
 msg = MIMEMultipart()
 msg["From"] = EMAIL_ADDRESS
 msg["To"] = ", ".join(TO_EMAILS)
-msg["Subject"] = "GitHub Action CSV Report"
+msg["Subject"] = "CICD generated Validation report"
 
-body = "Hello,\n\nPlease find attached the excel report.\n\nThanks."
+body = "Hello,\n\nPlease find attached the excel with validation reportreport.\n\nThanks."
 msg.attach(MIMEText(body, "plain"))
 
 # Attach CSV file
