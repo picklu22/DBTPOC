@@ -10,14 +10,14 @@ EMAIL_ADDRESS = "ghoshpicklu2@gmail.com"
 EMAIL_PASSWORD = "cjok miel xfyq lyei"
 TO_EMAIL = "Picklu.Ghosh2@cognizant.com" 
 
-FILE_PATH = "input.csv"   # Make sure this file exists
+FILE_PATH = "data_comp.xlsx"   # Make sure this file exists
 
 msg = MIMEMultipart()
 msg["From"] = EMAIL_ADDRESS
 msg["To"] = TO_EMAIL
 msg["Subject"] = "GitHub Action CSV Report"
 
-body = "Hello,\n\nPlease find attached the CSV report.\n\nThanks."
+body = "Hello,\n\nPlease find attached the excel report.\n\nThanks."
 msg.attach(MIMEText(body, "plain"))
 
 # Attach CSV file
