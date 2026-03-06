@@ -8,13 +8,17 @@ from email import encoders
 
 EMAIL_ADDRESS = "ghoshpicklu2@gmail.com"
 EMAIL_PASSWORD = "cjok miel xfyq lyei"
-TO_EMAIL = "Picklu.Ghosh2@cognizant.com" 
+TO_EMAIL =  [
+    "Ghosh2@cognizant.com",
+    "user2@example.com",
+    "user3@example.com"
+]
 
 FILE_PATH = "data_comp.xlsx"   # Make sure this file exists
 
 msg = MIMEMultipart()
 msg["From"] = EMAIL_ADDRESS
-msg["To"] = TO_EMAIL
+msg["To"] = ", ".join(TO_EMAILS)
 msg["Subject"] = "GitHub Action CSV Report"
 
 body = "Hello,\n\nPlease find attached the excel report.\n\nThanks."
