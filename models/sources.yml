@@ -1,8 +1,16 @@
-
 version: 2
+
 sources:
-  - name: raw
-    database: DBT_POC      # e.g., ANALYTICS_DB
-    schema: DBT_SCHEMA          # e.g., RAW
+  - name: ecommerce
+    database: DBT_POC
+    schema: DBT_SCHEMA
+
     tables:
-      - name: customers
+      - name: dim_customer
+      - name: dim_product
+      - name: dim_date
+      - name: dim_channel
+      - name: dim_geography
+      - name: fact_orders
+      - name: fact_order_items
+
