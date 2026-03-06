@@ -38,7 +38,7 @@ jobs:
             target: dev
             outputs:
               dev:
-                type: snowflake
+                type: "snowflake"
                 account:"JZBSADH-CG45326"
                 user: "monopoly22"
                 password: "8638569740picklU"
