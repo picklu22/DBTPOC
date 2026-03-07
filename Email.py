@@ -13,38 +13,66 @@ TO_EMAIL =  [
     "Arthi.Senthil@cognizant.com"
 ]
 
-FILE_PATH = "data_comp.xlsx"   # Make sure this file exists
+CSV_FILE = "data_comp.xlsx"
+REPORT_FILE = "analysis_report.txt"
 
 msg = MIMEMultipart()
 msg["From"] = EMAIL_ADDRESS
 msg["To"] = ", ".join(TO_EMAIL)
-msg["Subject"] = "CICD generated Validation report"
+msg["Subject"] = "GitHub Action Data Quality Report"
 
-body = "Hello,\n\nPlease find attached the excel with validation reportreport.\n\nThanks."
+body = """
+Hello,
+
+Please find attached files:
+
+1. CSV Report
+2. AI Analysis Report
+
+Thanks
+"""
+
 msg.attach(MIMEText(body, "plain"))
 
-# Attach CSV file
-with open(FILE_PATH, "rb") as attachment:
-    part = MIMEBase("application", "octet-stream")
-    part.set_payload(attachment.read())
+# List of attachments
+files_to_attach = [CSV_FILE, REPORT_FILE]
 
-encoders.encode_base64(part)
+for file_path in files_to_attach:
 
-part.add_header(
-    "Content-Disposition",
-    f"attachment; filename={os.path.basename(FILE_PATH)}",
-)
+    if not os.path.exists(file_path):
+        print(f"File not found: {file_path}")
+        continue
 
-msg.attach(part)
+    with open(file_path, "rb") as attachment:
 
-# Send email
+        part = MIMEBase("application", "octet-stream")
+        part.set_payload(attachment.read())
+
+    encoders.encode_base64(part)
+
+    part.add_header(
+        "Content-Disposition",
+        f"attachment; filename={os.path.basename(file_path)}",
+    )
+
+    msg.attach(part)
+
+
+# Send Email
 try:
+
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
+
     server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+
     server.send_message(msg)
+
     server.quit()
-    print("Email with attachment sent successfully!")
+
+    print("Email with CSV and analysis report sent successfully!")
+
 except Exception as e:
+
     print("Error sending email:", e)
     raise
