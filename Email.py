@@ -13,14 +13,14 @@ TO_EMAIL =  [
     "Arthi.Senthil@cognizant.com"
 ]
 
-FILE_PATH = "data_comp.xlsx"   # Make sure this file exists
+FILE_PATH = "Data/Test.csv"   # Make sure this file exists
 
 msg = MIMEMultipart()
 msg["From"] = EMAIL_ADDRESS
 msg["To"] = ", ".join(TO_EMAIL)
-msg["Subject"] = "CICD generated Validation report"
+msg["Subject"] = "GitHub Action CSV Report"
 
-body = "Hello,\n\nPlease find attached the excel with validation reportreport.\n\nThanks."
+body = "Hello,\n\nPlease find attached the CSV report.\n\nThanks."
 msg.attach(MIMEText(body, "plain"))
 
 # Attach CSV file
