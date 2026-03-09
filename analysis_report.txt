@@ -1,0 +1,29 @@
+ TEST 1:
+1. SRC vs TGT mismatches: There are no mismatches in the customer key, customer ID, and customer name columns. However, there are mismatches in the segment std and type columns.
+2. ONLY_IN_SRC records: There is one ONLY_IN_SRC record with customer_key 999.
+3. Root cause: The mismatches in segment std and type columns could be due to data entry errors or differences in data sources. The ONLY_IN_SRC record could be due to data entry errors or incomplete data in the target system.
+4. Summary: There are mismatches in segment std and type columns, and one ONLY_IN_SRC record.
+
+TEST 3:
+1. SRC vs TGT mismatches: There are no mismatches in the city column. However, there are mismatches in the type column.
+2. ONLY_IN_SRC records: There are two ONLY_IN_SRC records with cities Chennai and NOIDA.
+3. Root cause: The mismatches in the type column could be due to data entry errors or differences in data sources. The ONLY_IN_SRC records could be due to data entry errors or incomplete data in the target system.
+4. Summary: There are mismatches in the type column, and two ONLY_IN_SRC records.
+
+TEST 4:
+1. SRC vs TGT mismatches: There are no mismatches in the customer name, city, state_region, and country columns. However, there are mismatches in the type column.
+2. ONLY_IN_SRC records: There are two ONLY_IN_SRC records with customer names Test Customer.
+3. Root cause: The mismatches in the type column could be due to data entry errors or differences in data sources. The ONLY_IN_SRC records could be due to data entry errors or incomplete data in the target system.
+4. Summary: There are mismatches in the type column, and two ONLY_IN_SRC records.
+
+TEST 5:
+1. SRC vs TGT mismatches: There are no mismatches in the customer name and city columns. However, there are mismatches in the type column.
+2. ONLY_IN_SRC records: There are two ONLY_IN_SRC records with customer name Test Customer.
+3. Root cause: The mismatches in the type column could be due to data entry errors or differences in data sources. The ONLY_IN_SRC records could be due to data entry errors or incomplete data in the target system.
+4. Summary: There are mismatches in the type column, and two ONLY_IN_SRC records.
+
+TEST 6:
+1. SRC vs TGT mismatches: There are no mismatches in the customer name, city, and state_region columns. However, there are mismatches in the type column.
+2. ONLY_IN_SRC records: There is one ONLY_IN_SRC record with customer name Test Customer.
+3. Root cause: The mismatches in the type column could be due to data entry errors or differences in data sources. The ONLY_IN_SRC record could be due to data entry errors or incomplete data in the target system.
+4. Summary: There are mismatches in the type column, and one ONLY_IN_SRC record.
