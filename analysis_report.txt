@@ -2,11 +2,12 @@
 
 This test compares the source (SRC) and target (TGT) data for discrepancies in customer information. There are two main types of issues identified in this test: SRC vs TGT mismatches and ONLY_IN_SRC records.
 
-1. SRC vs TGT Mismatches:
-   - In this test, there are two instances of SRC vs TGT mismatches. Both mismatches are related to the customer's segment information. In the source data, the customer segment is "Consumer," while in the target data, it is "UNKNOWN."
-   - Root cause: The root cause of this mismatch could be due to differences in data entry or processing between the source and target systems. It is possible that the source system has a more accurate or up-to-date segment information for these customers, while the target system has not been updated or has incorrect information.
+1. SRC vs TGT mismatches:
+   - In this test, there are two instances where the customer information in the source and target data does not match.
+   - In both cases, the customer name is different between the source and target data.
+   - The root cause of these mismatches could be due to data entry errors, data migration issues, or other data processing problems.
 
-2. ONLY_IN_SRC Records:
-   - There are no ONLY_IN_SRC records in this test.
+2. ONLY_IN_SRC records:
+   - There are no instances of ONLY_IN_SRC records in this test.
 
-Overall, this test highlights the discrepancies in customer segment information between the source and target systems. The root cause of these discrepancies should be investigated and addressed to ensure data consistency and accuracy.
+Overall, this test highlights the need for careful data reconciliation and the importance of ensuring that data is consistent and accurate across different systems and databases.
