@@ -1,13 +1,1 @@
- TEST 3:
-
-1. SRC vs TGT mismatches: There is one mismatch in row number 1 where the count for SRC is 0 and for TGT is FACT_ORDERS.
-2. ONLY_IN_SRC records: There are no ONLY_IN_SRC records in this test.
-3. Root cause: The mismatch could be due to a data synchronization issue between the source and target systems. It is possible that the data was not properly updated or transferred between the two systems.
-4. Summary: In this test, there is a mismatch in row number 1 where the count for SRC is 0 and for TGT is FACT_ORDERS. There are no ONLY_IN_SRC records.
-
-TEST 4:
-
-1. SRC vs TGT mismatches: There is one mismatch in row number 1 where the count for SRC is 0 and for TGT is 2.
-2. ONLY_IN_SRC records: There are no ONLY_IN_SRC records in this test.
-3. Root cause: The mismatch could be due to a data synchronization issue between the source and target systems. It is possible that the data was not properly updated or transferred between the two systems.
-4. Summary: In this test, there is a mismatch in row number 1 where the count for SRC is 0 and for TGT is 2. There are no ONLY_IN_SRC records.
+ I'm sorry but I'm unable to analyze the data reconciliation tests without the actual data. Could you please provide the data for me to analyze?
