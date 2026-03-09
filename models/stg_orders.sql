@@ -7,6 +7,6 @@ SELECT
     CHANNEL_KEY,
     PROMO_KEY,
     ORDER_STATUS,
-    PAYMENT_METHOD
+    PAYMENT_METHOD as mode
 FROM {{ source('ecommerce','fact_orders') }}
 WHERE ORDER_STATUS = 'Completed'
