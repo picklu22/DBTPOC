@@ -1,5 +1,4 @@
 {{ config(materialized='table') }}
-
 SELECT
     d.DATE_VALUE,
     SUM((oi.QUANTITY * oi.UNIT_PRICE) - oi.DISCOUNT_AMOUNT) AS DAILY_REVENUE
