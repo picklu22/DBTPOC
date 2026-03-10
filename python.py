@@ -1,4 +1,3 @@
-
 import re
 import pandas as pd
 import snowflake.connector
@@ -109,11 +108,11 @@ def group_counts(df: pd.DataFrame, headers):
     return df.groupby(headers, dropna=False).size().reset_index(name="CNT")
 
 def counts_diff(a_counts: pd.DataFrame, b_counts: pd.DataFrame, headers):
-    """
-    Return A-B and B-A counts as DataFrames with deltas.
-    """
+    # FIX: return properly shaped empty frames so downstream code won't break
     if a_counts.empty and b_counts.empty:
-        return a_counts, b_counts
+        extra_src = pd.DataFrame(columns=headers + ["CNT_SRC", "CNT_TGT", "EXTRA_IN_SRC"]).iloc[0:0]
+        extra_tgt = pd.DataFrame(columns=headers + ["CNT_TGT", "CNT_SRC", "EXTRA_IN_TGT"]).iloc[0:0]
+        return extra_src, extra_tgt
 
     ab = a_counts.merge(b_counts, on=headers, how="left", suffixes=("_SRC", "_TGT"))
     ab["CNT_TGT"] = ab["CNT_TGT"].fillna(0).astype(int)
@@ -457,6 +456,9 @@ def main():
                 # 2) Execute SRC/TGT SQL
                 src_df = run_query(conn, src_sql)
                 tgt_df = run_query(conn, tgt_sql)
+                
+              
+
 
                 # 3) Align schemas by position & choose headers
                 headers, src_w, tgt_w = choose_headers(src_df, tgt_df)
@@ -471,6 +473,9 @@ def main():
                 # 5) Normalize to string
                 src_s = to_str_df(src_w, headers)
                 tgt_s = to_str_df(tgt_w, headers)
+                
+                
+
 
                 # 6–9) Multiset logic & differences
                 a_counts = group_counts(src_s, headers)
