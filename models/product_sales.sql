@@ -3,7 +3,7 @@
 SELECT
     p.PRODUCT_NAME,
     p.BRAND,
-    SUM(oi.QUANTITY) AS TOTAL_Qt,
+    SUM(oi.QUANTITY) AS TOTAL_Qty,
     SUM((oi.QUANTITY * oi.UNIT_PRICE) - oi.DISCOUNT_AMOUNT) AS TOTAL_REVENUE
 FROM {{ source('ecommerce','fact_order_items') }} oi
 JOIN {{ source('ecommerce','dim_product') }} p
