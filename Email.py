@@ -26,7 +26,7 @@ Hello,
 
 Please find attached files:
 
-1. CSV Report
+1. Excel Report.
 2. AI Analysis Report
 
 Thanks
