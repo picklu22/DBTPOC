@@ -1,20 +1,20 @@
  TEST 7:
 
-1. SRC vs TGT mismatches: The CUSTOMER_NAME field has mismatches in both rows. In SRC, it is "Akash Kumar" while in TGT, it is "UNKNOWN".
+1. SRC vs TGT mismatches: There are two mismatches in this test. The CUSTOMER_NAME field has "Akash Kumar Consumer" in the SRC data and "UNKNOWN" in the TGT data. The CITY field has "Chennai" in both SRC and TGT data, but the STATE_REGION field has "TN" in the SRC data and "UNKNOWN" in the TGT data.
 2. ONLY_IN_SRC records: There are no ONLY_IN_SRC records in this test.
-3. Root cause: The root cause of the mismatch could be due to data entry errors or data migration issues.
-4. Summary: In this test, there are mismatches in the CUSTOMER_NAME field between SRC and TGT.
+3. Root cause: The mismatches in this test could be due to data entry errors or differences in data sources. The CUSTOMER_NAME mismatch could be due to a data entry error, while the STATE_REGION mismatch could be due to a difference in data sources.
+4. Summary: In this test, there are two mismatches between the SRC and TGT data, but no ONLY_IN_SRC records. The mismatches could be due to data entry errors or differences in data sources.
 
 TEST 9:
 
 1. SRC vs TGT mismatches: There are no mismatches in this test.
 2. ONLY_IN_SRC records: There are no ONLY_IN_SRC records in this test.
-3. Root cause: The root cause of the mismatch could be due to data entry errors or data migration issues.
-4. Summary: In this test, there are no mismatches between SRC and TGT.
+3. Root cause: There are no mismatches in this test, so there is no root cause to identify.
+4. Summary: In this test, there are no mismatches or ONLY_IN_SRC records.
 
 TEST 10:
 
 1. SRC vs TGT mismatches: There are no mismatches in this test.
 2. ONLY_IN_SRC records: There are no ONLY_IN_SRC records in this test.
-3. Root cause: The root cause of the mismatch could be due to data entry errors or data migration issues.
-4. Summary: In this test, there are no mismatches between SRC and TGT.
+3. Root cause: There are no mismatches in this test, so there is no root cause to identify.
+4. Summary: In this test, there are no mismatches or ONLY_IN_SRC records.

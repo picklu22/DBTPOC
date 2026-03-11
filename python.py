@@ -456,9 +456,6 @@ def main():
                 # 2) Execute SRC/TGT SQL
                 src_df = run_query(conn, src_sql)
                 tgt_df = run_query(conn, tgt_sql)
-                
-              
-
 
                 # 3) Align schemas by position & choose headers
                 headers, src_w, tgt_w = choose_headers(src_df, tgt_df)
@@ -473,9 +470,6 @@ def main():
                 # 5) Normalize to string
                 src_s = to_str_df(src_w, headers)
                 tgt_s = to_str_df(tgt_w, headers)
-                
-                
-
 
                 # 6–9) Multiset logic & differences
                 a_counts = group_counts(src_s, headers)
@@ -534,31 +528,31 @@ def main():
         # Summary
         summary_df.to_excel(writer, sheet_name="data_comp", index=False)
 
-        # A_MINUS_B
+        # A_MINUS_B -> "Mismatch in source"
         if a_minus_b_all:
             per_test_a = collect_per_test(a_minus_b_all)
-            write_vertical_sections(writer, "A_MINUS_B", per_test_a)
+            write_vertical_sections(writer, "Mismatch in source", per_test_a)
         else:
-            pd.DataFrame(columns=["INFO"]).to_excel(writer, sheet_name="A_MINUS_B", index=False)
+            pd.DataFrame(columns=["INFO"]).to_excel(writer, sheet_name="Mismatch in source", index=False)
 
-        # B_MINUS_A
+        # B_MINUS_A -> "Mismatch in target"
         if b_minus_a_all:
             per_test_b = collect_per_test(b_minus_a_all)
-            write_vertical_sections(writer, "B_MINUS_A", per_test_b)
+            write_vertical_sections(writer, "Mismatch in target", per_test_b)
         else:
-            pd.DataFrame(columns=["INFO"]).to_excel(writer, sheet_name="B_MINUS_A", index=False)
+            pd.DataFrame(columns=["INFO"]).to_excel(writer, sheet_name="Mismatch in target", index=False)
 
         # mismatch (no colors yet; colors will be applied in-place below)
         if mismatch_all:
             per_test_m = collect_per_test(mismatch_all)
-            write_vertical_sections(writer, "mismatch", per_test_m)
+            write_vertical_sections(writer, "Consolidated", per_test_m)
         else:
-            pd.DataFrame(columns=["INFO"]).to_excel(writer, sheet_name="mismatch", index=False)
+            pd.DataFrame(columns=["INFO"]).to_excel(writer, sheet_name="Consolidated", index=False)
 
     # 13) Highlight mismatches IN PLACE on 'mismatch'
-    highlight_mismatch_in_place(OUTPUT_FILE, sheet_name="mismatch", fill_hex="FFC7CE")
+    highlight_mismatch_in_place(OUTPUT_FILE, sheet_name="Consolidated", fill_hex="FFC7CE")
 
-    print("DONE — data_comp.xlsx created and 'mismatch' colored in place (only differing SRC/TGT cells).")
+    print("DONE — data_comp.xlsx created with sheets 'Mismatch in source', 'Mismatch in target', and 'mismatch' colored in place.")
 
 if __name__ == "__main__":
     main()
