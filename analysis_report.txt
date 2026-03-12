@@ -1,20 +1,13 @@
- TEST 7:
+ TEST 4 Summary:
 
-1. SRC vs TGT mismatches: The CUSTOMER_NAME field has mismatches in both rows. In SRC, it is "Akash Kumar" while in TGT, it is "UNKNOWN".
-2. ONLY_IN_SRC records: There are no ONLY_IN_SRC records in this test.
-3. Root cause: The root cause of the mismatch could be due to data entry errors or data migration issues.
-4. Summary: In this test, there are mismatches in the CUSTOMER_NAME field between SRC and TGT.
+This test compares the source (SRC) and target (TGT) data for discrepancies in customer information. There are two main types of issues identified in this test: SRC vs TGT mismatches and ONLY_IN_SRC records.
 
-TEST 9:
+1. SRC vs TGT mismatches:
+   - In this test, there are two instances where the customer information in the source and target data does not match.
+   - In both cases, the customer name is different between the source and target data.
+   - The root cause of these mismatches could be due to data entry errors, data migration issues, or other data processing problems.
 
-1. SRC vs TGT mismatches: There are no mismatches in this test.
-2. ONLY_IN_SRC records: There are no ONLY_IN_SRC records in this test.
-3. Root cause: The root cause of the mismatch could be due to data entry errors or data migration issues.
-4. Summary: In this test, there are no mismatches between SRC and TGT.
+2. ONLY_IN_SRC records:
+   - There are no instances of ONLY_IN_SRC records in this test.
 
-TEST 10:
-
-1. SRC vs TGT mismatches: There are no mismatches in this test.
-2. ONLY_IN_SRC records: There are no ONLY_IN_SRC records in this test.
-3. Root cause: The root cause of the mismatch could be due to data entry errors or data migration issues.
-4. Summary: In this test, there are no mismatches between SRC and TGT.
+Overall, this test highlights the need for careful data reconciliation and the importance of ensuring that data is consistent and accurate across different systems and databases.
