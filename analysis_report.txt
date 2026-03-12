@@ -1,13 +1,23 @@
- TEST 4 Summary:
+ TEST 3 Summary:
 
 This test compares the source (SRC) and target (TGT) data for discrepancies in customer information. There are two main types of issues identified in this test: SRC vs TGT mismatches and ONLY_IN_SRC records.
 
 1. SRC vs TGT mismatches:
    - In this test, there are two instances where the customer information in the source and target data does not match.
-   - In both cases, the customer name is different between the source and target data.
-   - The root cause of these mismatches could be due to data entry errors, data migration issues, or other data processing problems.
+   - For customer CUST-001, the customer name is "Akash Kumar" in the source data but is listed as "UNKNOWN" in the target data.
+   - For customer CUST-003, the customer name is "Ravi Iyer" in the source data but is listed as "UNKNOWN" in the target data.
 
 2. ONLY_IN_SRC records:
    - There are no instances of ONLY_IN_SRC records in this test.
 
-Overall, this test highlights the need for careful data reconciliation and the importance of ensuring that data is consistent and accurate across different systems and databases.
+Root Cause:
+
+The root cause of the SRC vs TGT mismatches is likely due to data entry errors or data processing issues that occurred when the data was transferred from the source to the target system. The discrepancies in the customer names could be a result of data entry errors, missing data, or data mapping issues during the data transfer process.
+
+Recommendations:
+
+To address the SRC vs TGT mismatches, the following steps can be taken:
+
+1. Investigate the data entry process to identify and correct any errors that may have occurred during data entry.
+2. Review the data transfer process to ensure that all data is being correctly mapped and transferred from the source to the target system.
+3. Implement data validation checks to ensure the accuracy and consistency of the data during the data entry and transfer processes.
