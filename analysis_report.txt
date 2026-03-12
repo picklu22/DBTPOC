@@ -12,12 +12,8 @@ This test compares the source (SRC) and target (TGT) data for discrepancies in c
 
 Root Cause:
 
-The root cause of the SRC vs TGT mismatches is likely due to data entry errors or data processing issues that occurred when the data was transferred from the source to the target system. The discrepancies in the customer names could be a result of data entry errors, missing data, or data mapping issues during the data transfer process.
+The root cause of the SRC vs TGT mismatches is likely due to data entry errors or data processing issues that resulted in incorrect customer information being stored in the target data.
 
-Recommendations:
+Test 3 Summary:
 
-To address the SRC vs TGT mismatches, the following steps can be taken:
-
-1. Investigate the data entry process to identify and correct any errors that may have occurred during data entry.
-2. Review the data transfer process to ensure that all data is being correctly mapped and transferred from the source to the target system.
-3. Implement data validation checks to ensure the accuracy and consistency of the data during the data entry and transfer processes.
+This test identified two instances of SRC vs TGT mismatches, where the customer names in the source and target data did not match. The root cause of these discrepancies is likely due to data entry errors or data processing issues. There were no instances of ONLY_IN_SRC records in this test.
